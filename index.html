@@ -37,6 +37,7 @@
     <div class="container header-bar">
       <a class="brand" href="index.html">
         <img src="assets/logo-primary.png" alt="Aeon Tax Services" width="407" height="352">
+        
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="sr-only">Open menu</span>
@@ -71,27 +72,10 @@
             <li>Professional</li>
           </ul>
         </div>
-        <figure class="return-scene">
-          <div class="return-sheet" aria-hidden="true">
-            <div class="return-sheet-top">
-              <div>
-                <p class="return-kicker">U.S. Individual Income Tax Return</p>
-                <p class="return-title"><span>Form</span> 1040</p>
-              </div>
-              <p class="return-side">Federal, state, and multi-state filings</p>
-            </div>
-            <ul class="return-rows">
-              <li><span class="row-no">1</span><span>Income</span></li>
-              <li><span class="row-no">2</span><span>Adjustments</span></li>
-              <li><span class="row-no">3</span><span>Deductions</span></li>
-              <li><span class="row-no">4</span><span>Tax and credits</span></li>
-            </ul>
-            <div class="return-foot">
-              <p>Individuals and businesses</p>
-              <p>Pennsylvania and nationwide</p>
-            </div>
-          </div>
-          <figcaption class="sr-only">Illustration of Form 1040 for federal, state, and multi-state filings.</figcaption>
+        <figure class="hero-form">
+          <button type="button" class="hero-form-open" data-form-open aria-haspopup="dialog" aria-controls="form-modal" aria-label="Open Form 1040, U.S. Individual Income Tax Return">
+            <img src="assets/form-1040.png" width="1347" height="648" alt="">
+          </button>
         </figure>
       </div>
     </section>
@@ -266,6 +250,15 @@
       </div>
     </div>
   </footer>
+  <dialog class="form-modal" id="form-modal" aria-labelledby="form-modal-title">
+    <div class="form-modal-bar">
+      <h2 id="form-modal-title">Form 1040, U.S. Individual Income Tax Return</h2>
+      <button type="button" class="form-modal-close" data-form-close>Close</button>
+    </div>
+    <div class="form-modal-body">
+      <img src="assets/form-1040.png" width="1347" height="648" alt="Form 1040, U.S. Individual Income Tax Return, enlarged">
+    </div>
+  </dialog>
   <script src="js/main.js" defer></script>
 </body>
 </html>

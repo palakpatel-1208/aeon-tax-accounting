@@ -45,6 +45,24 @@ function onScroll() {
 onScroll();
 window.addEventListener("scroll", onScroll, { passive: true });
 
+const formDialog = document.querySelector("#form-modal");
+const formOpen = document.querySelector("[data-form-open]");
+const formClose = document.querySelector("[data-form-close]");
+
+if (formDialog && formOpen) {
+  formOpen.addEventListener("click", () => {
+    formDialog.showModal();
+  });
+
+  if (formClose) {
+    formClose.addEventListener("click", () => formDialog.close());
+  }
+
+  formDialog.addEventListener("click", (event) => {
+    if (event.target === formDialog) formDialog.close();
+  });
+}
+
 const serviceField = document.querySelector("#service");
 if (serviceField) {
   const requested = new URLSearchParams(window.location.search).get("service");
