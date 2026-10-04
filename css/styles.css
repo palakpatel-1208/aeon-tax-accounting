@@ -740,7 +740,7 @@ button {
 }
 
 .cta-band .container {
-  max-width: 760px;
+  max-width: 840px;
 }
 
 .cta-rule {
@@ -760,8 +760,28 @@ button {
   max-width: 38rem;
 }
 
-.cta-band .btn {
+.btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.75);
+  background: transparent;
+  color: var(--white);
+}
+
+.btn-outline-light:hover {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
   margin-top: 1.6rem;
+}
+
+.cta-band .cta-actions .btn {
+  margin-top: 0;
 }
 
 .page-hero {
@@ -1216,6 +1236,7 @@ button {
 
   .hero-actions .btn,
   .cta-band .btn,
+  .cta-actions .btn,
   .why-intro .btn {
     width: 100%;
   }
