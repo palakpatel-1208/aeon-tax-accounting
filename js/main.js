@@ -32,8 +32,65 @@ function syncNavFromLocation() {
   setActiveNav(page === "home" || !page ? "home" : page);
 }
 
+function getHeaderOffset() {
+  return header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+}
+
+function updateHeaderOffset() {
+  const offset = `${getHeaderOffset()}px`;
+  document.documentElement.style.setProperty("--header-offset", offset);
+}
+
+function scrollToHash(hash, behavior = "smooth") {
+  const id = (hash || "").replace(/^#/, "");
+  if (!id || id === "top" || id === "main") {
+    window.scrollTo({ top: 0, behavior });
+    setActiveNav("home");
+    return;
+  }
+
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  updateHeaderOffset();
+  // Align section top under the sticky header so section padding
+  // creates the same breathing room Contact Us already has.
+  const top = window.scrollY + target.getBoundingClientRect().top - getHeaderOffset();
+  window.scrollTo({ top: Math.max(0, top), behavior });
+  setActiveNav(sectionMap.some((item) => item.id === id) ? id : "home");
+}
+
 syncNavFromLocation();
-window.addEventListener("hashchange", syncNavFromLocation);
+updateHeaderOffset();
+window.addEventListener("resize", updateHeaderOffset);
+
+function samePagePath(pathname) {
+  return (pathname || "/").replace(/index\.html$/i, "").replace(/\/$/, "") || "/";
+}
+
+document.querySelectorAll('a[href*="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const url = new URL(link.href, window.location.href);
+    if (samePagePath(url.pathname) !== samePagePath(window.location.pathname)) return;
+    if (!url.hash) return;
+    event.preventDefault();
+    history.pushState(null, "", url.hash);
+    scrollToHash(url.hash, "smooth");
+    setMenu(false);
+  });
+});
+
+window.addEventListener("hashchange", () => {
+  syncNavFromLocation();
+  scrollToHash(window.location.hash, "smooth");
+});
+
+window.addEventListener("load", () => {
+  updateHeaderOffset();
+  if (window.location.hash) {
+    scrollToHash(window.location.hash, "auto");
+  }
+});
 
 function setMenu(open) {
   if (!nav || !toggle) return;
@@ -46,10 +103,6 @@ function setMenu(open) {
 if (toggle && nav) {
   toggle.addEventListener("click", () => {
     setMenu(!nav.classList.contains("is-open"));
-  });
-
-  nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => setMenu(false));
   });
 
   document.addEventListener("keydown", (event) => {
@@ -79,7 +132,7 @@ if (page === "home") {
         if (match) setActiveNav(match.key);
       },
       {
-        rootMargin: "-35% 0px -55% 0px",
+        rootMargin: "-40% 0px -50% 0px",
         threshold: [0.1, 0.25, 0.5],
       }
     );
