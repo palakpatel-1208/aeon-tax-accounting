@@ -41,9 +41,21 @@ function updateHeaderOffset() {
   document.documentElement.style.setProperty("--header-offset", offset);
 }
 
+let navLockKey = "";
+let navLockTimer = 0;
+
+function lockActiveNav(key, ms = 900) {
+  navLockKey = key;
+  setActiveNav(key);
+  window.clearTimeout(navLockTimer);
+  navLockTimer = window.setTimeout(() => {
+    navLockKey = "";
+  }, ms);
+}
+
 function scrollToTop(behavior = "smooth") {
+  lockActiveNav("home");
   window.scrollTo({ top: 0, behavior });
-  setActiveNav("home");
 }
 
 function scrollToHash(hash, behavior = "smooth") {
@@ -60,8 +72,9 @@ function scrollToHash(hash, behavior = "smooth") {
   // Align section top under the sticky header so section padding
   // creates the same breathing room Contact Us already has.
   const top = window.scrollY + target.getBoundingClientRect().top - getHeaderOffset();
+  const key = sectionMap.some((item) => item.id === id) ? id : "home";
+  lockActiveNav(key);
   window.scrollTo({ top: Math.max(0, top), behavior });
-  setActiveNav(sectionMap.some((item) => item.id === id) ? id : "home");
 }
 
 syncNavFromLocation();
@@ -131,33 +144,37 @@ if (toggle && nav) {
   });
 }
 
-if (page === "home") {
-  const observed = sectionMap
-    .map((item) => document.getElementById(item.id))
-    .filter(Boolean);
-
-  if (observed.length && "IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (!visible) return;
-        const match = sectionMap.find((item) => item.id === visible.target.id);
-        if (match) setActiveNav(match.key);
-      },
-      {
-        rootMargin: "-40% 0px -50% 0px",
-        threshold: [0.1, 0.25, 0.5],
-      }
-    );
-    observed.forEach((section) => observer.observe(section));
+function updateActiveNavFromScroll() {
+  if (navLockKey) {
+    setActiveNav(navLockKey);
+    return;
   }
+
+  // Near the top of the page, Home should stay highlighted
+  if (window.scrollY < Math.max(120, getHeaderOffset())) {
+    setActiveNav("home");
+    return;
+  }
+
+  let current = "home";
+  const marker = getHeaderOffset() + 24;
+
+  sectionMap.forEach((item) => {
+    const section = document.getElementById(item.id);
+    if (!section) return;
+    if (section.getBoundingClientRect().top <= marker) {
+      current = item.key;
+    }
+  });
+
+  setActiveNav(current);
 }
 
 function onScroll() {
-  if (!header) return;
-  header.classList.toggle("is-scrolled", window.scrollY > 8);
+  if (header) {
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
+  }
+  if (page === "home") updateActiveNavFromScroll();
 }
 
 onScroll();
