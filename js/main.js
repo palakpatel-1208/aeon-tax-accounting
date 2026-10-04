@@ -21,7 +21,7 @@ function setActiveNav(key) {
 
 function syncNavFromLocation() {
   const hash = (window.location.hash || "").replace("#", "");
-  if (!hash || hash === "top" || hash === "main") {
+  if (!hash || hash === "main") {
     setActiveNav(page === "home" || !page ? "home" : page);
     return;
   }
@@ -41,11 +41,15 @@ function updateHeaderOffset() {
   document.documentElement.style.setProperty("--header-offset", offset);
 }
 
+function scrollToTop(behavior = "smooth") {
+  window.scrollTo({ top: 0, behavior });
+  setActiveNav("home");
+}
+
 function scrollToHash(hash, behavior = "smooth") {
   const id = (hash || "").replace(/^#/, "");
-  if (!id || id === "top" || id === "main") {
-    window.scrollTo({ top: 0, behavior });
-    setActiveNav("home");
+  if (!id || id === "main") {
+    scrollToTop(behavior);
     return;
   }
 
@@ -68,11 +72,22 @@ function samePagePath(pathname) {
   return (pathname || "/").replace(/index\.html$/i, "").replace(/\/$/, "") || "/";
 }
 
-document.querySelectorAll('a[href*="#"]').forEach((link) => {
+document.querySelectorAll('a[href]').forEach((link) => {
   link.addEventListener("click", (event) => {
     const url = new URL(link.href, window.location.href);
     if (samePagePath(url.pathname) !== samePagePath(window.location.pathname)) return;
-    if (!url.hash) return;
+
+    // Home / logo: clear hash and return to top without #top in the URL
+    if (!url.hash || url.hash === "#") {
+      if (link.dataset.nav === "home" || link.classList.contains("brand")) {
+        event.preventDefault();
+        history.pushState(null, "", window.location.pathname + window.location.search);
+        scrollToTop("smooth");
+        setMenu(false);
+      }
+      return;
+    }
+
     event.preventDefault();
     history.pushState(null, "", url.hash);
     scrollToHash(url.hash, "smooth");
