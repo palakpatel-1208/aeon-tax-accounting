@@ -17,7 +17,7 @@
   --radius: 16px;
   --radius-sm: 8px;
   --container: 1140px;
-  --header-offset: 7.5rem;
+  --header-offset: 9.25rem;
   --font-display: "Outfit", "Segoe UI", sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", sans-serif;
   --space-section: clamp(4.25rem, 7vw, 6.5rem);
@@ -31,6 +31,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
 }
 
 body {
@@ -302,16 +303,35 @@ button {
   border-bottom: 1px solid transparent;
 }
 
-.site-header::before {
-  content: "";
-  display: block;
-  height: 3px;
-  background: var(--teal);
+.utility-bar {
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.utility-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 34px;
+  padding-block: 0.4rem;
 }
 
 .site-header.is-scrolled {
   border-bottom-color: var(--line);
   box-shadow: 0 8px 24px rgba(14, 31, 59, 0.05);
+}
+
+#top,
+#services,
+#about,
+#contact {
+  scroll-margin-top: var(--header-offset);
 }
 
 .header-bar {
@@ -1245,6 +1265,16 @@ button {
 @media (max-width: 480px) {
   .container {
     width: min(var(--container), calc(100% - 2rem));
+  }
+
+  .utility-bar {
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+  }
+
+  .utility-bar-inner {
+    min-height: 30px;
+    gap: 0.5rem;
   }
 
   .brand img,

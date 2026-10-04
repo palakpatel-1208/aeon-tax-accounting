@@ -2,12 +2,38 @@ const header = document.querySelector(".site-header");
 const nav = document.querySelector("#site-nav");
 const toggle = document.querySelector(".nav-toggle");
 const page = document.body.dataset.page;
+const navLinks = document.querySelectorAll("[data-nav]");
+const sectionMap = [
+  { id: "services", key: "services" },
+  { id: "about", key: "about" },
+  { id: "contact", key: "contact" },
+];
 
-document.querySelectorAll("[data-nav]").forEach((link) => {
-  if (link.dataset.nav === page) {
-    link.setAttribute("aria-current", "page");
+function setActiveNav(key) {
+  navLinks.forEach((link) => {
+    if (link.dataset.nav === key) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+}
+
+function syncNavFromLocation() {
+  const hash = (window.location.hash || "").replace("#", "");
+  if (!hash || hash === "top" || hash === "main") {
+    setActiveNav(page === "home" || !page ? "home" : page);
+    return;
   }
-});
+  if (sectionMap.some((item) => item.id === hash)) {
+    setActiveNav(hash);
+    return;
+  }
+  setActiveNav(page === "home" || !page ? "home" : page);
+}
+
+syncNavFromLocation();
+window.addEventListener("hashchange", syncNavFromLocation);
 
 function setMenu(open) {
   if (!nav || !toggle) return;
@@ -35,6 +61,30 @@ if (toggle && nav) {
     if (nav.contains(event.target) || toggle.contains(event.target)) return;
     setMenu(false);
   });
+}
+
+if (page === "home") {
+  const observed = sectionMap
+    .map((item) => document.getElementById(item.id))
+    .filter(Boolean);
+
+  if (observed.length && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const match = sectionMap.find((item) => item.id === visible.target.id);
+        if (match) setActiveNav(match.key);
+      },
+      {
+        rootMargin: "-35% 0px -55% 0px",
+        threshold: [0.1, 0.25, 0.5],
+      }
+    );
+    observed.forEach((section) => observer.observe(section));
+  }
 }
 
 function onScroll() {

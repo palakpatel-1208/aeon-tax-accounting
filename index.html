@@ -34,8 +34,14 @@
 <body data-page="home">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
+    <div class="utility-bar">
+      <div class="container utility-bar-inner">
+        <span>Your Financial Partner</span>
+        <span>Pennsylvania and nationwide</span>
+      </div>
+    </div>
     <div class="container header-bar">
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html#top">
         <img src="assets/logo-primary.png" alt="Aeon Tax Services" width="407" height="352">
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -44,17 +50,17 @@
       </button>
       <nav class="site-nav" id="site-nav" aria-label="Primary">
         <ul>
-          <li><a href="index.html" data-nav="home">Home</a></li>
-          <li><a href="services.html" data-nav="services">Services</a></li>
-          <li><a href="about.html" data-nav="about">About Us</a></li>
-          <li><a href="contact.html" data-nav="contact">Contact Us</a></li>
+          <li><a href="index.html#top" data-nav="home">Home</a></li>
+          <li><a href="index.html#services" data-nav="services">Services</a></li>
+          <li><a href="index.html#about" data-nav="about">About Us</a></li>
+          <li><a href="index.html#contact" data-nav="contact">Contact Us</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero">
+    <section class="hero" id="top">
       <div class="container hero-grid">
         <div>
           <p class="eyebrow">Aeon Tax and Accounting Services</p>
@@ -69,7 +75,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="services-heading">
+    <section class="section" id="services" aria-labelledby="services-heading">
       <div class="container">
         <div class="section-heading">
           <h2 id="services-heading">Our Services</h2>
@@ -81,7 +87,6 @@
             <div class="service-card-body">
               <h3>Individual &amp; Business Tax Services</h3>
               <p>Accurate tax preparation and filing solutions are designed to help you stay compliant while optimizing your tax position. We provide federal, state, and multi-state filings with precision.</p>
-              <a class="text-link" href="services.html#tax">Explore tax services</a>
             </div>
           </article>
           <article class="service-card service-card-media">
@@ -89,7 +94,6 @@
             <div class="service-card-body">
               <h3>Bookkeeping &amp; Accounting</h3>
               <p>Maintain clear visibility into your finances with professional bookkeeping, reconciliations, and detailed financial statements.</p>
-              <a class="text-link" href="services.html#bookkeeping">Explore bookkeeping</a>
             </div>
           </article>
           <article class="service-card service-card-media">
@@ -97,7 +101,6 @@
             <div class="service-card-body">
               <h3>Payroll Solutions</h3>
               <p>Hassle-free payroll administration with reliable processing, reporting, and compliance support for businesses of all sizes.</p>
-              <a class="text-link" href="services.html#payroll">Explore payroll</a>
             </div>
           </article>
         </div>
@@ -143,7 +146,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="why-heading">
+    <section class="section" id="about" aria-labelledby="why-heading">
       <div class="container why-layout">
         <div class="why-intro">
           <h2 id="why-heading">Why Aeon Tax?</h2>
@@ -186,7 +189,7 @@
       </div>
     </section>
 
-    <section class="section cta-band" aria-labelledby="cta-heading">
+    <section class="section cta-band" id="contact" aria-labelledby="cta-heading">
       <div class="container">
         <hr class="cta-rule">
         <h2 id="cta-heading">Schedule Your Free Call Today!</h2>
@@ -202,7 +205,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <a href="index.html">
+        <a href="index.html#top">
           <img src="assets/logo-primary.png" alt="Aeon Tax Services" width="407" height="352">
         </a>
         <p>Comprehensive tax preparation, bookkeeping, and payroll solutions for individuals and businesses throughout Pennsylvania and nationwide.</p>
@@ -210,17 +213,17 @@
       <div>
         <h2 class="footer-title">Services</h2>
         <ul>
-          <li><a href="services.html#tax">Individual &amp; Business Tax Services</a></li>
-          <li><a href="services.html#bookkeeping">Bookkeeping &amp; Accounting</a></li>
-          <li><a href="services.html#payroll">Payroll Solutions</a></li>
+          <li><a href="index.html#services">Individual &amp; Business Tax Services</a></li>
+          <li><a href="index.html#services">Bookkeeping &amp; Accounting</a></li>
+          <li><a href="index.html#services">Payroll Solutions</a></li>
         </ul>
       </div>
       <div>
         <h2 class="footer-title">Contact</h2>
         <ul>
           <li>Pennsylvania and nationwide</li>
-          <li>Phone: <span class="is-pending">To be confirmed</span></li>
-          <li>Email: <span class="is-pending">To be confirmed</span></li>
+          <li>Phone: <a href="tel:+15555550100">+1 (555) 555-0100</a></li>
+          <li>Email: <a href="mailto:contact@aeontaxaccounting.com">contact@aeontaxaccounting.com</a></li>
           <li>Address: <span class="is-pending">To be confirmed</span></li>
         </ul>
       </div>
