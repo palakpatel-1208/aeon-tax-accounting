@@ -621,6 +621,25 @@ button {
   flex-direction: column;
 }
 
+.service-card-media {
+  padding: 0;
+  overflow: hidden;
+}
+
+.service-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--paper);
+}
+
+.service-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.25rem 1.2rem 1.35rem;
+}
+
 .promise-card h3,
 .service-card h3,
 .audience-card h3 {
@@ -1023,7 +1042,7 @@ button {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.35fr 0.7fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr;
   gap: 2rem 1.5rem;
   padding-block: 3.25rem 2.75rem;
 }
