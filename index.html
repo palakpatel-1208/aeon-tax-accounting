@@ -21,7 +21,6 @@
     "@context": "https://schema.org",
     "@type": "AccountingService",
     "name": "Aeon Tax Services",
-    "slogan": "Accurate. Reliable. Professional.",
     "description": "Comprehensive tax preparation, bookkeeping, and payroll solutions for individuals and businesses throughout Pennsylvania and nationwide.",
     "areaServed": [
       { "@type": "State", "name": "Pennsylvania" },
@@ -36,13 +35,13 @@
   <header class="site-header">
     <div class="utility-bar">
       <div class="container utility-bar-inner">
-        <span>Your Financial Partner</span>
-        <span>Pennsylvania and nationwide</span>
+        <span>Your Tax and Accounting Partner</span>
+        <span>Pennsylvania and Nationwide</span>
       </div>
     </div>
     <div class="container header-bar">
       <a class="brand" href="index.html" data-nav="home">
-        <img src="assets/logo-primary.png" alt="Aeon Tax Services" width="407" height="352">
+        <img src="assets/logo-primary.png" alt="Aeon Tax Services" width="407" height="332">
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="sr-only">Open menu</span>
@@ -60,18 +59,33 @@
   </header>
 
   <main id="main">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Aeon Tax and Accounting Services</p>
-          <h1>Trusted CPA Services Across Pennsylvania and the United States</h1>
-          <p class="lead">Comprehensive tax preparation, bookkeeping, and payroll solutions for individuals and businesses. Delivering reliable financial expertise to clients throughout Pennsylvania and nationwide.</p>
+    <section class="hero" id="hero">
+      <div class="container hero-container">
+        <div class="hero-top">
+          <p class="eyebrow"><span class="eyebrow-accent" aria-hidden="true"></span> Aeon Tax and Accounting Services</p>
+          <h1 class="hero-heading">Trusted CPA Services Across Pennsylvania and the United States</h1>
+          <p class="hero-subhead">Comprehensive tax preparation, bookkeeping, and payroll solutions for individuals and businesses. Delivering reliable financial expertise to clients throughout Pennsylvania and Nationwide.</p>
         </div>
-        <figure class="hero-form">
-          <button type="button" class="hero-form-open" data-form-open aria-haspopup="dialog" aria-controls="form-modal" aria-label="Open larger view of tax preparation workspace">
-            <img src="assets/hero-tax-desk.jpg" width="1600" height="918" alt="Tax forms and a calculator arranged for tax preparation">
-          </button>
-        </figure>
+
+        <div class="hero-banner-container">
+          <div class="hero-banner-frame">
+            <button type="button" class="hero-banner-trigger" data-form-open aria-haspopup="dialog" aria-controls="form-modal" aria-label="Open larger view of tax season promotion banner">
+              <img 
+                src="assets/hero-banner.jpg" 
+                width="1024" 
+                height="558" 
+                alt="Aeon Tax Services - Save More This Tax Season! 20% Early Bird Discount Before February 28, 2027. Additional discounts for students and senior citizens. Contact us today." 
+                class="hero-banner-img"
+                fetchpriority="high"
+                decoding="async"
+              >
+            </button>
+            <a href="index.html#contact" class="hero-banner-cta-link" aria-label="Contact Us Today for 20% Early Bird Tax Season Discount">
+              <span class="sr-only">Contact Us Today</span>
+              <span class="hero-cta-sheen" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -195,8 +209,8 @@
         <h2 id="contact-heading">Schedule Your Free Call Today!</h2>
         <p>Give us a call and we're happy to give you our advice on how we can best serve you.</p>
         <div class="cta-actions">
-          <a class="btn btn-light" href="tel:+15555550100">Call +1 (555) 555-0100</a>
-          <a class="btn btn-outline-light" href="mailto:contact@aeontaxaccounting.com">Email contact@aeontaxaccounting.com</a>
+          <a class="btn btn-light" href="tel:+14452820983">Call +1 (445) 282-0983</a>
+          <a class="btn btn-outline-light" href="mailto:aeontaxcpa@gmail.com">Email aeontaxcpa@gmail.com</a>
         </div>
       </div>
     </section>
@@ -206,7 +220,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="index.html" data-nav="home">
-          <img src="assets/logo-primary.png" alt="Aeon Tax Services" width="407" height="352">
+          <img src="assets/logo-primary.png" alt="Aeon Tax Services" width="407" height="332">
         </a>
         <p>Comprehensive tax preparation, bookkeeping, and payroll solutions for individuals and businesses throughout Pennsylvania and nationwide.</p>
       </div>
@@ -221,10 +235,10 @@
       <div>
         <h2 class="footer-title">Contact</h2>
         <ul>
-          <li>Pennsylvania and nationwide</li>
-          <li>Phone: <a href="tel:+15555550100">+1 (555) 555-0100</a></li>
-          <li>Email: <a href="mailto:contact@aeontaxaccounting.com">contact@aeontaxaccounting.com</a></li>
-          <li>Address: <span class="is-pending">To be confirmed</span></li>
+          <li>Pennsylvania and Nationwide</li>
+          <li>Phone: <a href="tel:+14452820983">+1 (445) 282-0983</a></li>
+          <li>Email: <a href="mailto:aeontaxcpa@gmail.com">aeontaxcpa@gmail.com</a></li>
+          <li>Location: <span class="is-pending">Warrington, PA</span></li>
         </ul>
       </div>
     </div>
@@ -237,11 +251,11 @@
   </footer>
   <dialog class="form-modal" id="form-modal" aria-labelledby="form-modal-title">
     <div class="form-modal-bar">
-      <h2 id="form-modal-title">Tax preparation workspace</h2>
+      <h2 id="form-modal-title">Tax Season Early Bird Promotion</h2>
       <button type="button" class="form-modal-close" data-form-close>Close</button>
     </div>
     <div class="form-modal-body">
-      <img src="assets/hero-tax-desk.jpg" width="1600" height="918" alt="Enlarged view of tax forms and a calculator arranged for tax preparation">
+      <img src="assets/hero-banner.jpg" width="1024" height="558" alt="Enlarged view of Aeon Tax Services Early Bird Promotion Banner">
     </div>
   </dialog>
   <script src="js/main.js" defer></script>
